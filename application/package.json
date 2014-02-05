@@ -1,0 +1,9 @@
+{
+    "name": "example-app",
+    "main": "index.html",
+    "window": {
+        "title": "Louncher",
+        "toolbar": true,
+        "frame": true
+    }
+}
