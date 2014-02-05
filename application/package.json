@@ -3,7 +3,13 @@
     "main": "index.html",
     "window": {
         "title": "Louncher",
-        "toolbar": true,
-        "frame": true
+        "toolbar": false,
+        "frame": false,
+        "width": 830,
+        "height": 650,
+        "min_width": 830,
+        "min_height": 650,
+        "max_width": 830,
+        "max_height": 650
     }
 }

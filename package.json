@@ -1,5 +1,5 @@
 {
-  "name": "Win Node Launcher",
+  "name": "Win_Node_Launcher",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
@@ -10,6 +10,9 @@
   "license": "ISC",
   "devDependencies": {
     "express": "~3.4.8",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "grunt": "~0.4.2",
+    "grunt-contrib-compass": "~0.7.1",
+    "grunt-zip": "~0.12.0"
   }
 }

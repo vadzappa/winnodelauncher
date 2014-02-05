@@ -1,13 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>Luncher</title>
     <script src="libs/jquery.js"></script>
     <script src="libs/underscore-min.js"></script>
-    <script src="scripts/index.js"></script>
+    <script src="scripts/frontend/index.js"></script>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-<a href="skype:toxabel?chat">Call me</a><br/>
-<a href="#" onclick="window.close()">Close!</a>
+
+<header>
+    <a href="#" class="close-window"><img src="images/close.png" alt="Закрыть" title="Закрыть"></a>
+</header>
+<article>
+    <div class="left-column">
+        <div class="content">
+            <img src="images/logo.png" alt="" title=""/>
+            <h1>Облачный<br/>бухгалтерский<br/>сервис</h1>
+            <h2>Amako Financial Group 2014</h2>
+        </div>
+    </div>
+    <div class="right-column">
+        <div class="greeting">
+            <div class="common">Добро пожаловать,</div>
+            <div class="user"></div>
+        </div>
+        <div class="launch-buttons">
+            <div class="big-launch-button">
+                <img src="images/1c.png"/>
+            </div>
+            <div class="small-launch-button">
+                <img src="images/db.png"/>
+            </div>
+            <div class="small-launch-button">
+                <img src="images/db.png"/>
+            </div>
+            <div class="small-launch-button last">
+                <img src="images/db.png"/>
+            </div>
+        </div>
+    </div>
+    <div class="news-widget">
+        news
+    </div>
+</article>
+<footer>
+    some footer
+</footer>
+
+<!--<a href="skype:toxabel?chat">Call me</a><br/>-->
 </body>
 </html>
