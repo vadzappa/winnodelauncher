@@ -1,0 +1,48 @@
+{
+    "launch-buttons": [
+        {
+            "name": "1С Бухгалтерия",
+            "size": "big",
+            "class": "1c",
+            "image": "images/1c.png",
+            "title": "",
+            "type": "link",
+            "link": "http://www.google.com"
+        },
+        {
+            "name": "Резервная копия БД",
+            "size": "small",
+            "class": "db-backup",
+            "image": "images/db.png",
+            "title": "",
+            "type": "exec",
+            "exec": "C:\\Windows\\System32\\notepad.exe"
+        },
+        {
+            "name": "Консультант+",
+            "size": "small",
+            "class": "consultant-plus",
+            "image": "images/db.png",
+            "title": "",
+            "type": "exec",
+            "exec": "cmd"
+        },
+        {
+            "name": "Консультация с бухгалтером",
+            "size": "small",
+            "class": "consult",
+            "image": "images/db.png",
+            "title": "",
+            "lastInRow": true,
+            "type": "url",
+            "url": "skype:toxabel?chat"
+        }
+    ],
+    "tech-support": {
+        "url": "skype:toxabel?chat"
+    },
+    "news-rss": {
+        "url": "http://www.buhgalteria.ru/rss/news.xml",
+        "count": 3
+    }
+}

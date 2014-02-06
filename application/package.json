@@ -6,10 +6,14 @@
         "toolbar": false,
         "frame": false,
         "width": 830,
-        "height": 650,
         "min_width": 830,
-        "min_height": 650,
         "max_width": 830,
-        "max_height": 650
+        "height": 750,
+        "max_height": 800
+    },
+    "dependencies": {
+        "lodash": "~2.4.1",
+        "underscore.deferred": "~0.4.0",
+        "log": "~1.4.0"
     }
 }

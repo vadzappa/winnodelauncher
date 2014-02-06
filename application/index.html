@@ -4,20 +4,26 @@
     <meta charset="utf-8">
     <title>Luncher</title>
     <script src="libs/jquery.js"></script>
+    <script src="libs/jquery-ui-1.10.4.custom.min.js"></script>
     <script src="libs/underscore-min.js"></script>
-    <script src="scripts/frontend/index.js"></script>
+    <script src="scripts/index.js"></script>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/jquery-ui-1.10.4.custom.min.css">
 </head>
 <body>
 
 <header>
-    <a href="#" class="close-window"><img src="images/close.png" alt="Закрыть" title="Закрыть"></a>
+    <a href="#" class="minimize fa fa-minus" title=""></a>
+    <a href="#" class="close fa fa-times" title="Закрыть"></a>
 </header>
 <article>
     <div class="left-column">
         <div class="content">
             <img src="images/logo.png" alt="" title=""/>
+
             <h1>Облачный<br/>бухгалтерский<br/>сервис</h1>
+
             <h2>Amako Financial Group 2014</h2>
         </div>
     </div>
@@ -27,28 +33,29 @@
             <div class="user"></div>
         </div>
         <div class="launch-buttons">
-            <div class="big-launch-button">
-                <img src="images/1c.png"/>
-            </div>
-            <div class="small-launch-button">
-                <img src="images/db.png"/>
-            </div>
-            <div class="small-launch-button">
-                <img src="images/db.png"/>
-            </div>
-            <div class="small-launch-button last">
-                <img src="images/db.png"/>
-            </div>
+
         </div>
     </div>
     <div class="news-widget">
-        news
+        <div class="news-header">
+            <span class="tab">Новостная лента <a href="url:http://www.buhgalteria.ru/">Buhgalteria.ru</a></span>
+        </div>
+        <div class="news-container">
+            <div class="news-header">Сегодня</div>
+            <ul class="news-list">
+                <li><img src="images/loading.gif"/></li>
+            </ul>
+        </div>
     </div>
 </article>
 <footer>
-    some footer
+    <div class="support">
+        <a href="#">Техническая поддержка</a>
+    </div>
 </footer>
 
-<!--<a href="skype:toxabel?chat">Call me</a><br/>-->
+<div class="close-dialog" title="Закрыть?">
+    <p>Вы уверены, что хотите выйти?</p>
+</div>
 </body>
 </html>
