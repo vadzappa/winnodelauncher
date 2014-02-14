@@ -1,7 +1,33 @@
-var noop = function noop() {
-};
+var MAXIMUM_NEWS_TITLE_LENGTH = 34;
 
-var require = require || noop;
+var noop = function noop() {
+    },
+    require = require || noop,
+    gui,
+    closeWindowDialogConfig = {
+        dialogClass: 'no-close',
+        buttons: [
+            {
+                text: "Да",
+                click: function () {
+                    $(this).dialog("close");
+                    getCurrentWindow().close();
+                }
+            },
+            {
+                text: "Нет",
+                click: function () {
+                    $(this).dialog("close");
+                }
+            }
+        ]
+    };
+
+try {
+    gui = require('nw.gui');
+} catch (e) {
+    gui = {};
+}
 
 var log = function log() {
     return require('./modules/logging');
@@ -26,38 +52,12 @@ var executeShell = function executeShell(shellScript) {
     log().info('Running: ' + shellScript);
 };
 
-var gui;
-try {
-    gui = require('nw.gui');
-} catch (e) {
-    gui = {};
-}
-
 var getUserName = function getUserName() {
     try {
         return process.env['USERNAME'];
     } catch (e) {
         return 'Zapolski';
     }
-};
-
-var closeWindowDialogConfig = {
-    dialogClass: 'no-close',
-    buttons: [
-        {
-            text: "Да",
-            click: function () {
-                $(this).dialog("close");
-                getCurrentWindow().close();
-            }
-        },
-        {
-            text: "Нет",
-            click: function () {
-                $(this).dialog("close");
-            }
-        }
-    ]
 };
 
 var getCurrentWindow = function getCurrentWindow() {
@@ -72,7 +72,7 @@ var getCurrentWindow = function getCurrentWindow() {
 (function ($, _) {
 
     var registerEvents = function registerEvents() {
-        $('.user').text(getUserName());
+        $('.user-name').text(getUserName());
 
         $('.close').click(function (e) {
             $(".close-dialog").dialog(closeWindowDialogConfig);
@@ -126,17 +126,36 @@ var getCurrentWindow = function getCurrentWindow() {
         };
 
         var launcherButtons = config['launch-buttons'],
-            buttonsContainer = $('.launch-buttons');
-        _.each(launcherButtons, function (launcherButton) {
-            drawLauncherButton.call(launcherButton, buttonsContainer);
+            leftButtonsContainer = $('.left-column .launch-buttons'),
+            rightButtonsContainer = $('.right-column .launch-buttons'),
+            leftColumnButtons = _.filter(launcherButtons, function (launcherButton) {
+                return launcherButton.position === 'left';
+            }),
+            rightColumnButtons = _.filter(launcherButtons, function (launcherButton) {
+                return launcherButton.position === 'right';
+            });
+
+        _.each(leftColumnButtons, function (launcherButton) {
+            drawLauncherButton.call(launcherButton, leftButtonsContainer);
+        });
+        _.each(rightColumnButtons, function (launcherButton) {
+            drawLauncherButton.call(launcherButton, rightButtonsContainer);
         });
     };
 
     var updateTechSupportContact = function updateTechSupportContact(config) {
-        var supportLink = $('.support a'),
-            techSupportDetails = config['tech-support'],
-            supportUrl = (techSupportDetails && techSupportDetails.url) || '#';
-        supportLink.attr('href', supportUrl);
+        var supportContainer = $('footer .support');
+        $.each(config.footerLinks, function (index, footerLink) {
+            var supportLink = $('<a></a>');
+            supportLink.text(footerLink.text);
+            supportLink.attr('href', '#');
+            if (footerLink.url) {
+                supportLink.attr('href', footerLink.url);
+            } else if (footerLink.exec) {
+                supportLink.click(executeShell.bind(null, footerLink.exec));
+            }
+            supportContainer.append(supportLink);
+        });
     };
 
     var retrieveNews = function retrieveNews(config) {
@@ -154,17 +173,21 @@ var getCurrentWindow = function getCurrentWindow() {
                 var newsDetails = $(this),
                     newsTitle = newsDetails.find('title').text(),
                     newsLink = newsDetails.find('link').text(),
-                    newPubDate = new Date(newsDetails.find('pubDate').text()),
-                    newPubTime = newPubDate.getHours() + ':' + newPubDate.getMinutes(),
+                    newPubDate = moment(newsDetails.find('pubDate').text()),
+                    newPubTime = newPubDate.format('HH:mm'),
                     newsListItem = $('<li/>'),
                     newsTimeItem = $('<span class="time"/>'),
                     newsDetailsItem = $('<span class="text"/>'),
                     newsLinkItem = $('<a/>');
 
+                if (newsTitle.length > MAXIMUM_NEWS_TITLE_LENGTH) {
+                    newsTitle = newsTitle.substr(0, MAXIMUM_NEWS_TITLE_LENGTH) + '...';
+                }
+
                 newsTimeItem.text(newPubTime);
                 newsListItem.append(newsTimeItem);
 
-                newsLinkItem.attr('href','url:' + newsLink);
+                newsLinkItem.attr('href', 'url:' + newsLink);
                 newsLinkItem.text(newsTitle);
                 newsDetailsItem.append(newsLinkItem);
                 newsListItem.append(newsDetailsItem);

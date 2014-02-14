@@ -6,6 +6,7 @@
     <script src="libs/jquery.js"></script>
     <script src="libs/jquery-ui-1.10.4.custom.min.js"></script>
     <script src="libs/underscore-min.js"></script>
+    <script src="libs/moment.min.js"></script>
     <script src="scripts/index.js"></script>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -14,45 +15,51 @@
 <body>
 
 <header>
-    <a href="#" class="minimize fa fa-minus" title=""></a>
-    <a href="#" class="close fa fa-times" title="Закрыть"></a>
+    <a href="#" class="minimize" title="Свернуть"><img src="images/minimize.png"/></a>
+    <a href="#" class="close" title="Закрыть"><img src="images/close.png"/></a>
 </header>
 <article>
-    <div class="left-column">
-        <div class="content">
+    <div class="detached-top">
+        <div class="logo-keeper">
             <img src="images/logo.png" alt="" title=""/>
-
-            <h1>Облачный<br/>бухгалтерский<br/>сервис</h1>
-
-            <h2>Amako Financial Group 2014</h2>
+        </div>
+        <div class="company-information">
+            <h2>Amako Financial Group <span class="found-year">2008</span></h2>
+            <h1>Cloud Accounting Solutions</h1>
         </div>
     </div>
-    <div class="right-column">
-        <div class="greeting">
-            <div class="common">Добро пожаловать,</div>
-            <div class="user"></div>
-        </div>
-        <div class="launch-buttons">
+    <div class="main-container">
+        <div class="left-column">
+            <div class="user-greeting">
+                <div class="greeting-text">Добро пожаловать,</div>
+                <div class="user-name"></div>
+            </div>
+            <div class="launch-buttons">
 
+            </div>
         </div>
-    </div>
-    <div class="news-widget">
-        <div class="news-header">
-            <span class="tab">Новостная лента <a href="url:http://www.buhgalteria.ru/">Buhgalteria.ru</a></span>
+        <div class="right-column">
+            <div class="news-widget">
+                <div class="news-header">
+                    <span class="tab"><a href="url:http://www.buhgalteria.ru/">Новостная лента Buhgalteria.ru</a></span>
+                </div>
+                <div class="news-container">
+                    <ul class="news-list">
+                        <li><img src="images/loading.gif"/></li>
+                    </ul>
+                    <div class="full-news-link"><a href="url:http://www.buhgalteria.ru/">Все новости &gt;</a></div>
+                </div>
+            </div>
+            <div class="launch-buttons">
+
+            </div>
         </div>
-        <div class="news-container">
-            <div class="news-header">Сегодня</div>
-            <ul class="news-list">
-                <li><img src="images/loading.gif"/></li>
-            </ul>
-        </div>
+        <footer>
+            <div class="support">
+            </div>
+        </footer>
     </div>
 </article>
-<footer>
-    <div class="support">
-        <a href="#">Техническая поддержка</a>
-    </div>
-</footer>
 
 <div class="close-dialog" title="Закрыть?">
     <p>Вы уверены, что хотите выйти?</p>

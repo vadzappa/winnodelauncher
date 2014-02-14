@@ -3,46 +3,85 @@
         {
             "name": "1С Бухгалтерия",
             "size": "big",
+            "position": "left",
             "class": "1c",
             "image": "images/1c.png",
-            "title": "",
+            "title": "1С Бухгалтерия",
+            "type": "link",
+            "link": "http://www.google.com"
+        },
+        {
+            "name": "Справочная информация",
+            "size": "big",
+            "position": "right",
+            "class": "spravka",
+            "image": "images/spravka.png",
+            "title": "Справочная информация",
             "type": "link",
             "link": "http://www.google.com"
         },
         {
             "name": "Резервная копия БД",
             "size": "small",
-            "class": "db-backup",
+            "position": "left",
+            "class": "db",
             "image": "images/db.png",
-            "title": "",
+            "title": "Резервная копия БД",
             "type": "exec",
             "exec": "C:\\Windows\\System32\\notepad.exe"
         },
         {
             "name": "Консультант+",
             "size": "small",
-            "class": "consultant-plus",
-            "image": "images/db.png",
-            "title": "",
+            "position": "left",
+            "lastInRow": true,
+            "class": "consultantplus",
+            "image": "images/consultantplus.png",
+            "title": "Консультант+",
             "type": "exec",
             "exec": "cmd"
         },
         {
             "name": "Консультация с бухгалтером",
             "size": "small",
-            "class": "consult",
-            "image": "images/db.png",
-            "title": "",
+            "position": "right",
+            "class": "consult_buhgalter",
+            "image": "images/consult_buhgalter.png",
+            "title": "Консультация с бухгалтером",
+            "type": "url",
+            "url": "skype:toxabel?chat"
+        },
+        {
+            "name": "Партнёрская программа",
+            "size": "small",
+            "position": "right",
+            "class": "partners",
+            "image": "images/partners.png",
+            "title": "Партнёрская программа",
             "lastInRow": true,
             "type": "url",
             "url": "skype:toxabel?chat"
         }
     ],
-    "tech-support": {
-        "url": "skype:toxabel?chat"
-    },
+    "footerLinks": [
+        {
+            "url": "url:http://www.amakofg.ru/",
+            "text": "www.AmakoFG.ru"
+        },
+        {
+            "url": "mailto:business@amakofg.ru",
+            "text": "business@amakofg.ru"
+        },
+        {
+            "url": "skype:toxabel?chat",
+            "text": "Техническая поддержка"
+        }
+    ],
     "news-rss": {
         "url": "http://www.buhgalteria.ru/rss/news.xml",
-        "count": 3
+        "count": 7
+    },
+    "configuration": {
+        "logfolder": "c:\\Users\\Public\\logs"
     }
 }

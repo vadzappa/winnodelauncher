@@ -1,10 +1,10 @@
 {
-    "name": "example-app",
+    "name": "Launcher",
     "main": "index.html",
     "window": {
-        "title": "Louncher",
-        "toolbar": false,
-        "frame": false,
+        "title": "Launcher",
+        "toolbar": true,
+        "frame": true,
         "width": 830,
         "min_width": 830,
         "max_width": 830,

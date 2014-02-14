@@ -10,14 +10,6 @@ module.exports = function (grunt) {
                     require: 'susy',
                     environment: 'production'
                 }
-            },
-            dev: {                    // Another target
-                options: {
-                    basePath: 'application/',
-                    sassDir: 'sass',
-                    cssDir: 'css',
-                    require: 'susy'
-                }
             }
         },
         zip: {
@@ -26,15 +18,26 @@ module.exports = function (grunt) {
                 src: 'application/**',
                 dest: 'webkit/winnodelauncher.nw'
             }
+        },
+        watch: {
+            dist: {
+                files: ['**/*.js', '**/*.scss', '**/*.html'],
+                tasks: ['build']
+            },
+            dev: {
+                files: ['**/*.scss'],
+                tasks: ['compass:dist']
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.loadNpmTasks('grunt-zip');
 
-    grunt.registerTask('default', ['compass:dev', 'zip:build']);
-
     grunt.registerTask('build', ['compass:dist', 'zip:build']);
+
+    grunt.registerTask('default', ['build']);
 
 };
