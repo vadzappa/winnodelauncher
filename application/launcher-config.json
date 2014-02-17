@@ -7,8 +7,8 @@
             "class": "1c",
             "image": "images/1c.png",
             "title": "1С Бухгалтерия",
-            "type": "link",
-            "link": "http://www.google.com"
+            "type": "exec",
+            "exec": "C:\\Program Files (x86)\\1cv82\\common\\1cestart.exe"
         },
         {
             "name": "Справочная информация",
@@ -16,9 +16,7 @@
             "position": "right",
             "class": "spravka",
             "image": "images/spravka.png",
-            "title": "Справочная информация",
-            "type": "link",
-            "link": "http://www.google.com"
+            "title": "Справочная информация"
         },
         {
             "name": "Резервная копия БД",
@@ -27,8 +25,8 @@
             "class": "db",
             "image": "images/db.png",
             "title": "Резервная копия БД",
-            "type": "exec",
-            "exec": "C:\\Windows\\System32\\notepad.exe"
+            "type": "link",
+            "link": "R:\\"
         },
         {
             "name": "Консультант+",
@@ -37,9 +35,7 @@
             "lastInRow": true,
             "class": "consultantplus",
             "image": "images/consultantplus.png",
-            "title": "Консультант+",
-            "type": "exec",
-            "exec": "cmd"
+            "title": "Консультант+"
         },
         {
             "name": "Консультация с бухгалтером",
@@ -49,7 +45,7 @@
             "image": "images/consult_buhgalter.png",
             "title": "Консультация с бухгалтером",
             "type": "url",
-            "url": "skype:toxabel?chat"
+            "url": "skype:amokohelp?chat"
         },
         {
             "name": "Партнёрская программа",
@@ -59,8 +55,8 @@
             "image": "images/partners.png",
             "title": "Партнёрская программа",
             "lastInRow": true,
-            "type": "url",
-            "url": "skype:toxabel?chat"
+            "type": "link",
+            "link": "C:\\launcher\\partner\\partner.htm"
         }
     ],
     "footerLinks": [
@@ -76,7 +72,7 @@
         },
         {
             "type": "url",
-            "url": "skype:toxabel?chat",
+            "url": "skype:dcerenkovs@gmail.com?chat",
             "text": "Техническая поддержка"
         }
     ],
@@ -85,6 +81,6 @@
         "count": 7
     },
     "configuration": {
-        "logfolder": "c:\\Users\\unknown\\logs"
+        "logfolder": "c:\\Users\\Public\\logs"
     }
 }
