@@ -65,14 +65,17 @@
     ],
     "footerLinks": [
         {
-            "url": "url:http://www.amakofg.ru/",
+            "type": "link",
+            "link": "http://www.amakofg.ru/",
             "text": "www.AmakoFG.ru"
         },
         {
+            "type": "url",
             "url": "mailto:business@amakofg.ru",
             "text": "business@amakofg.ru"
         },
         {
+            "type": "url",
             "url": "skype:toxabel?chat",
             "text": "Техническая поддержка"
         }
@@ -82,6 +85,6 @@
         "count": 7
     },
     "configuration": {
-        "logfolder": "c:\\Users\\Public\\logs"
+        "logfolder": "c:\\Users\\unknown\\logs"
     }
 }

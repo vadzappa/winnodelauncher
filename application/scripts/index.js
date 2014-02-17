@@ -42,8 +42,18 @@ var getConfig = function getConfig() {
     }
 };
 
-var executeShell = function executeShell(shellScript) {
+var executeFileShell = function executeFileShell(shellScript) {
     var exec = require('child_process').execFile;
+    exec(shellScript, function (error, stdout, stderr) {
+        if (error !== null) {
+            log().error('Error for: ' + shellScript + ': ' + error);
+        }
+    });
+    log().info('Running: ' + shellScript);
+};
+
+var executeShell = function executeShell(shellScript) {
+    var exec = require('child_process').exec;
     exec(shellScript, function (error, stdout, stderr) {
         if (error !== null) {
             log().error('Error for: ' + shellScript + ': ' + error);
@@ -85,6 +95,15 @@ var getCurrentWindow = function getCurrentWindow() {
         });
     };
 
+    var startizeAllLinks = function startizeAllLinks() {
+        $('a[href^=http]').each(function(){
+            var $link = $(this);
+            $link.click(executeShell.bind(null, 'start ' + $link.attr('href')));
+            $link.attr('href', '#');
+        });
+    };
+
+
     var populateLauncherButtons = function populateLauncherButtons(config) {
 
         var drawLauncherButton = function drawLauncherButton(container) {
@@ -107,10 +126,11 @@ var getCurrentWindow = function getCurrentWindow() {
                     break;
                 case 'exec':
                     buttonUrl.attr('href', '#');
-                    buttonUrl.click(executeShell.bind(null, this.exec));
+                    buttonUrl.click(executeFileShell.bind(null, this.exec));
                     break;
                 case 'link':
-                    buttonUrl.attr('href', 'url:' + this.link);
+                    buttonUrl.attr('href', '#');
+                    buttonUrl.click(executeShell.bind(null, 'start ' + this.link));
                     break;
                 default :
                     break;
@@ -148,12 +168,22 @@ var getCurrentWindow = function getCurrentWindow() {
         $.each(config.footerLinks, function (index, footerLink) {
             var supportLink = $('<a></a>');
             supportLink.text(footerLink.text);
-            supportLink.attr('href', '#');
-            if (footerLink.url) {
-                supportLink.attr('href', footerLink.url);
-            } else if (footerLink.exec) {
-                supportLink.click(executeShell.bind(null, footerLink.exec));
+            switch (footerLink.type) {
+                case 'url':
+                    supportLink.attr('href', this.url);
+                    break;
+                case 'exec':
+                    supportLink.attr('href', '#');
+                    supportLink.click(executeFileShell.bind(null, this.exec));
+                    break;
+                case 'link':
+                    supportLink.attr('href', '#');
+                    supportLink.click(executeShell.bind(null, 'start ' + this.link));
+                    break;
+                default :
+                    break;
             }
+
             supportContainer.append(supportLink);
         });
     };
@@ -187,7 +217,9 @@ var getCurrentWindow = function getCurrentWindow() {
                 newsTimeItem.text(newPubTime);
                 newsListItem.append(newsTimeItem);
 
-                newsLinkItem.attr('href', 'url:' + newsLink);
+                newsLinkItem.attr('href', '#');
+                newsListItem.click(executeShell.bind(null, 'start ' + newsLink));
+
                 newsLinkItem.text(newsTitle);
                 newsDetailsItem.append(newsLinkItem);
                 newsListItem.append(newsDetailsItem);
@@ -200,6 +232,7 @@ var getCurrentWindow = function getCurrentWindow() {
 
     $(function () {
         registerEvents();
+        startizeAllLinks();
         $.when(getConfig()).then(function (config) {
             populateLauncherButtons(config);
             updateTechSupportContact(config);
