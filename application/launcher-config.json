@@ -16,7 +16,9 @@
             "position": "right",
             "class": "spravka",
             "image": "images/spravka.png",
-            "title": "Справочная информация"
+            "title": "Справочная информация",
+            "type": "link",
+            "link": "http://sites.google.com/a/amoko.com/spravocnaa-informacia-dla-buhgaltera/"
         },
         {
             "name": "Резервная копия БД",
@@ -35,7 +37,9 @@
             "lastInRow": true,
             "class": "consultantplus",
             "image": "images/consultantplus.png",
-            "title": "Консультант+"
+            "title": "Консультант+",
+            "type": "exec",
+            "exec": "R:\\Consultant plus\\cons.exe"
         },
         {
             "name": "Консультация с бухгалтером",
@@ -56,7 +60,7 @@
             "title": "Партнёрская программа",
             "lastInRow": true,
             "type": "link",
-            "link": "C:\\launcher\\partner\\partner.htm"
+            "link": "C:\\launcher\\partner\\Amoko_PartnershipProg.pdf"
         }
     ],
     "footerLinks": [
