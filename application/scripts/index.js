@@ -33,6 +33,10 @@ var log = function log() {
     return require('./modules/logging');
 };
 
+var newsSaver = function newsSaver() {
+    return require('./modules/newsSaver');
+};
+
 var getConfig = function getConfig() {
     try {
         var configReader = require('./modules/configReader');
@@ -42,9 +46,9 @@ var getConfig = function getConfig() {
     }
 };
 
-var executeFileShell = function executeFileShell(shellScript) {
+var executeFileShell = function executeFileShell(shellScript, args) {
     var exec = require('child_process').execFile;
-    exec(shellScript, function (error, stdout, stderr) {
+    exec(shellScript, args, function (error, stdout, stderr) {
         if (error !== null) {
             log().error('Error for: ' + shellScript + ': ' + error);
         }
@@ -96,7 +100,7 @@ var getCurrentWindow = function getCurrentWindow() {
     };
 
     var startizeAllLinks = function startizeAllLinks() {
-        $('a[href^=http]').each(function(){
+        $('a[href^=http], a[href^=file]').each(function () {
             var $link = $(this);
             $link.click(executeShell.bind(null, 'start ' + $link.attr('href')));
             $link.attr('href', '#');
@@ -191,19 +195,18 @@ var getCurrentWindow = function getCurrentWindow() {
     var retrieveNews = function retrieveNews(config) {
         var newsContainer = $('.news-list'),
             newsRssDetails = config['news-rss'],
-            rssUrl = (newsRssDetails && newsRssDetails.url) || '#',
             newsAmount = newsRssDetails.count || 3;
-        $.get(rssUrl, function (data) {
+
+
+        $.when(newsSaver().readAndSaveNews(config)).done(function (newsInfo) {
             newsContainer.html("");
-            var newsItems = $(data).find('item');
-            newsItems.each(function (index) {
+            $.each(newsInfo.items, function (index, item) {
                 if (index + 1 > newsAmount) {
                     return false;
                 }
-                var newsDetails = $(this),
-                    newsTitle = newsDetails.find('title').text(),
-                    newsLink = newsDetails.find('link').text(),
-                    newPubDate = moment(newsDetails.find('pubDate').text()),
+                var newsTitle = item.title,
+                    newsLink = 'file:///' + newsInfo.filePath + '#' + item.id,
+                    newPubDate = item.pubDate,
                     newPubTime = newPubDate.format('HH:mm'),
                     newsListItem = $('<li/>'),
                     newsTimeItem = $('<span class="time"/>'),
@@ -214,11 +217,13 @@ var getCurrentWindow = function getCurrentWindow() {
                     newsTitle = newsTitle.substr(0, MAXIMUM_NEWS_TITLE_LENGTH) + '...';
                 }
 
+                console.log(newsLink);
+
                 newsTimeItem.text(newPubTime);
                 newsListItem.append(newsTimeItem);
 
                 newsLinkItem.attr('href', '#');
-                newsListItem.click(executeShell.bind(null, 'start ' + newsLink));
+                newsListItem.click(executeFileShell.bind(null, config.configuration.browser, [newsLink]));
 
                 newsLinkItem.text(newsTitle);
                 newsDetailsItem.append(newsLinkItem);

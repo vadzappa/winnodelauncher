@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Новости - {{currDate}}</title>
+    <style type="text/css">
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            list-style-type: none;
+            border: 1px solid black;
+            margin: 1em 0 0 0;
+            padding: 0.5em;
+        }
+
+        a[id] {
+            display: block;
+            font-weight: bold;
+            font-size: large;
+        }
+
+        span.date {
+            display: block;
+        }
+
+        p {
+            text-align: justify;
+            margin: 0.5em 0;
+        }
+
+        div.news-content {
+            margin: 0 1em;
+        }
+    </style>
+</head>
+<body>
+<h1>{{currDate}}</h1>
+<ul>
+    {{#each items}}
+        <li>
+            <a id="{{this.id}}">{{this.title}}</a>
+            <span class="date">{{fmtDate this.pubDate}}</span>
+            <div class="news-content">
+                {{{this.description}}}
+            </div>
+        </li>
+    {{/each}}
+</ul>
+
+</body>
+</html>

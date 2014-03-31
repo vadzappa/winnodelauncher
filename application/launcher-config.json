@@ -85,6 +85,8 @@
         "count": 7
     },
     "configuration": {
-        "logfolder": "c:\\Users\\Public\\logs"
+        "logfolder": "c:\\Users\\Public\\logs",
+        "news-save-file": "C:/launcher/news.html",
+        "browser": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
     }
 }

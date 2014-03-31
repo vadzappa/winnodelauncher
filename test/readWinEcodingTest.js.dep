@@ -1,0 +1,27 @@
+var chai = require('chai'),
+    assert = chai.assert,
+    should = chai.should(),
+    expect = chai.expect,
+    _ = require('lodash'),
+    newsSaver = require('../application/modules/newsSaver'),
+    throwFail = function () {
+        throw 'Deferred Failed';
+    },
+    request = require('request'),
+    iconv = require('iconv-lite');
+
+_.mixin(require('underscore.deferred'));
+
+describe('Read RSS in windows-1251', function () {
+
+    it('should exist', function (done) {
+        request({
+            url: 'http://www.buhgalteria.ru/rss/news.xml',
+            encoding: null
+        }, function (err, response, body) {
+            console.log(iconv.decode(body, 'win1251'));
+            done();
+        });
+    });
+
+});
