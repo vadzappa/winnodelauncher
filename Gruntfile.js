@@ -1,6 +1,14 @@
 module.exports = function (grunt) {
 
     grunt.initConfig({
+        copy: {
+            vendor: {
+                expand: true,
+                cwd: 'application/vendor/css',
+                src: ['**'],
+                dest: 'application/css/'
+            }
+        },
         compass: {                  // Task
             dist: {                   // Target
                 options: {
@@ -15,7 +23,7 @@ module.exports = function (grunt) {
         zip: {
             build: {
                 cwd: 'application/',
-                src: 'application/**',
+                src: ['application/**','!application/vendor/**','!application/sass/**'],
                 dest: 'webkit/winnodelauncher.nw'
             }
         },
@@ -33,10 +41,11 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.loadNpmTasks('grunt-zip');
 
-    grunt.registerTask('build', ['compass:dist', 'zip:build']);
+    grunt.registerTask('build', ['compass:dist', 'copy:vendor', 'zip:build']);
 
     grunt.registerTask('default', ['build']);
 

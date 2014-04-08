@@ -39,7 +39,7 @@
             "image": "images/consultantplus.png",
             "title": "Консультант+",
             "type": "exec",
-            "exec": "R:\\Consultant plus\\cons.exe"
+            "exec": "D:\\Consultant plus\\cons.exe"
         },
         {
             "name": "Консультация с бухгалтером",
