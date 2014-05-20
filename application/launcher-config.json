@@ -66,13 +66,13 @@
     "footerLinks": [
         {
             "type": "link",
-            "link": "http://www.amakofg.ru/",
-            "text": "www.AmakoFG.ru"
+            "link": "http://www.amokofg.ru/",
+            "text": "www.AmokoFG.ru"
         },
         {
             "type": "url",
-            "url": "mailto:business@amakofg.ru",
-            "text": "business@amakofg.ru"
+            "url": "mailto:business@amokofg.ru",
+            "text": "business@amokofg.ru"
         },
         {
             "type": "url",
