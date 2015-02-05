@@ -1,25 +1,26 @@
 {
-    "name": "Launcher",
-    "main": "index.html",
-    "window": {
-        "title": "Launcher",
-        "toolbar": false,
-        "frame": false,
-        "width": 830,
-        "min_width": 830,
-        "max_width": 830,
-        "height": 750,
-        "max_height": 800
-    },
-    "dependencies": {
-        "lodash": "~2.4.1",
-        "underscore.deferred": "~0.4.0",
-        "log": "~1.4.0",
-        "handlebars": "~2.0.0-alpha.2",
-        "request": "~2.34.0",
-        "xml2js": "~0.4.2",
-        "moment": "~2.5.1",
-        "underscore.string": "~2.3.3",
-        "iconv-lite": "~0.2.11"
-    }
+  "name": "Launcher",
+  "main": "index.html",
+  "window": {
+    "title": "Launcher",
+    "toolbar": true,
+    "frame": true,
+    "width": 830,
+    "min_width": 830,
+    "max_width": 830,
+    "height": 750,
+    "max_height": 800
+  },
+  "dependencies": {
+    "handlebars": "~2.0.0-alpha.2",
+    "iconv-lite": "~0.2.11",
+    "lodash": "~2.4.1",
+    "log": "~1.4.0",
+    "moment": "~2.5.1",
+    "request": "~2.34.0",
+    "sjcl": "^1.0.2",
+    "underscore.deferred": "~0.4.0",
+    "underscore.string": "~2.3.3",
+    "xml2js": "~0.4.2"
+  }
 }

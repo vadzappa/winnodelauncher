@@ -1,5 +1,15 @@
 var MAXIMUM_NEWS_TITLE_LENGTH = 34;
 
+var IS_DEBUG = true,
+    debug = function () {
+        console.log('debugging smth...');
+        if (!IS_DEBUG) {
+            return;
+        }
+
+        console.log.apply(console, _.toArray(arguments));
+    };
+
 var noop = function noop() {
     },
     require = require || noop,
@@ -82,6 +92,32 @@ var getCurrentWindow = function getCurrentWindow() {
     }
 };
 
+var encodeMessage = function encodeMessage(password, message) {
+        return message;
+    };
+
+var TOKENS = {
+    '${USER_HASHED}': function (config, button) {
+        return encodeMessage(config.password, JSON.stringify(_.pick(process.env, 'USER', 'USERNAME')));
+    }
+};
+
+
+var applyTokens = function applyTokens(config, buttons) {
+    debug('applying tokens');
+    _.each(buttons, function (button) {
+        if (button.type === 'url' || button.type === 'link') {
+            var propertyWithTokens = button[button.type];
+            if (propertyWithTokens) {
+                _.each(_.keys(TOKENS), function (key) {
+                    propertyWithTokens = propertyWithTokens.replace(key, TOKENS[key](config['encryption-config'], button));
+                });
+
+            }
+        }
+    });
+    return buttons;
+};
 
 (function ($, _) {
 
@@ -149,7 +185,7 @@ var getCurrentWindow = function getCurrentWindow() {
             container.append(buttonContainer);
         };
 
-        var launcherButtons = config['launch-buttons'],
+        var launcherButtons = applyTokens(config, config['launch-buttons']),
             leftButtonsContainer = $('.left-column .launch-buttons'),
             rightButtonsContainer = $('.right-column .launch-buttons'),
             leftColumnButtons = _.filter(launcherButtons, function (launcherButton) {
@@ -158,6 +194,8 @@ var getCurrentWindow = function getCurrentWindow() {
             rightColumnButtons = _.filter(launcherButtons, function (launcherButton) {
                 return launcherButton.position === 'right';
             });
+
+        debug('drawing buttons');
 
         _.each(leftColumnButtons, function (launcherButton) {
             drawLauncherButton.call(launcherButton, leftButtonsContainer);
@@ -168,8 +206,9 @@ var getCurrentWindow = function getCurrentWindow() {
     };
 
     var updateTechSupportContact = function updateTechSupportContact(config) {
+        debug('technical contacts loading');
         var supportContainer = $('footer .support');
-        $.each(config.footerLinks, function (index, footerLink) {
+        $.each(applyTokens(config, config.footerLinks), function (index, footerLink) {
             var supportLink = $('<a></a>');
             supportLink.text(footerLink.text);
             switch (footerLink.type) {
@@ -193,6 +232,7 @@ var getCurrentWindow = function getCurrentWindow() {
     };
 
     var retrieveNews = function retrieveNews(config) {
+        debug('reading news');
         var newsContainer = $('.news-list'),
             newsRssDetails = config['news-rss'],
             newsAmount = newsRssDetails.count || 3;
@@ -217,7 +257,7 @@ var getCurrentWindow = function getCurrentWindow() {
                     newsTitle = newsTitle.substr(0, MAXIMUM_NEWS_TITLE_LENGTH) + '...';
                 }
 
-                console.log(newsLink);
+                debug(newsLink);
 
                 newsTimeItem.text(newPubTime);
                 newsListItem.append(newsTimeItem);
@@ -239,6 +279,7 @@ var getCurrentWindow = function getCurrentWindow() {
         registerEvents();
         startizeAllLinks();
         $.when(getConfig()).then(function (config) {
+            debug('config read');
             populateLauncherButtons(config);
             updateTechSupportContact(config);
             retrieveNews(config);

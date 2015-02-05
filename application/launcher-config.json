@@ -1,92 +1,95 @@
 {
-    "launch-buttons": [
-        {
-            "name": "1С Бухгалтерия",
-            "size": "big",
-            "position": "left",
-            "class": "1c",
-            "image": "images/1c.png",
-            "title": "1С Бухгалтерия",
-            "type": "exec",
-            "exec": "C:\\Program Files (x86)\\1cv82\\common\\1cestart.exe"
-        },
-        {
-            "name": "Справочная информация",
-            "size": "big",
-            "position": "right",
-            "class": "spravka",
-            "image": "images/spravka.png",
-            "title": "Справочная информация",
-            "type": "link",
-            "link": "http://sites.google.com/a/amoko.com/spravocnaa-informacia-dla-buhgaltera/"
-        },
-        {
-            "name": "Резервная копия БД",
-            "size": "small",
-            "position": "left",
-            "class": "db",
-            "image": "images/db.png",
-            "title": "Резервная копия БД",
-            "type": "link",
-            "link": "R:\\"
-        },
-        {
-            "name": "Консультант+",
-            "size": "small",
-            "position": "left",
-            "lastInRow": true,
-            "class": "consultantplus",
-            "image": "images/consultantplus.png",
-            "title": "Консультант+",
-            "type": "exec",
-            "exec": "D:\\Consultant plus\\cons.exe"
-        },
-        {
-            "name": "Консультация с бухгалтером",
-            "size": "small",
-            "position": "right",
-            "class": "consult_buhgalter",
-            "image": "images/consult_buhgalter.png",
-            "title": "Консультация с бухгалтером",
-            "type": "url",
-            "url": "skype:amokohelp?chat"
-        },
-        {
-            "name": "Партнёрская программа",
-            "size": "small",
-            "position": "right",
-            "class": "partners",
-            "image": "images/partners.png",
-            "title": "Партнёрская программа",
-            "lastInRow": true,
-            "type": "link",
-            "link": "http://amokofg.ru/partnership.html"
-        }
-    ],
-    "footerLinks": [
-        {
-            "type": "link",
-            "link": "http://www.amokofg.ru/",
-            "text": "www.AmokoFG.ru"
-        },
-        {
-            "type": "url",
-            "url": "mailto:business@amokofg.ru",
-            "text": "business@amokofg.ru"
-        },
-        {
-            "type": "url",
-            "url": "skype:dcerenkovs?chat",
-            "text": "Техническая поддержка"
-        }
-    ],
-    "news-rss": {
-        "url": "http://www.buhgalteria.ru/rss/news.xml",
-        "count": 7
+  "launch-buttons": [
+    {
+      "name": "1С Бухгалтерия",
+      "size": "big",
+      "position": "left",
+      "class": "1c",
+      "image": "images/1c.png",
+      "title": "1С Бухгалтерия",
+      "type": "exec",
+      "exec": "C:\\Program Files (x86)\\1cv82\\common\\1cestart.exe"
     },
-    "configuration": {
-        "logfolder": "c:\\Users\\Public\\logs",
-        "news-save-file": "C:/launcher/news.html",
-        "browser": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+    {
+      "name": "Справочная информация",
+      "size": "big",
+      "position": "right",
+      "class": "spravka",
+      "image": "images/spravka.png",
+      "title": "Справочная информация",
+      "type": "link",
+      "link": "http://sites.google.com/a/amoko.com/spravocnaa-informacia-dla-buhgaltera/"
+    },
+    {
+      "name": "Резервная копия БД",
+      "size": "small",
+      "position": "left",
+      "class": "db",
+      "image": "images/db.png",
+      "title": "Резервная копия БД",
+      "type": "link",
+      "link": "R:\\"
+    },
+    {
+      "name": "Консультант+",
+      "size": "small",
+      "position": "left",
+      "lastInRow": true,
+      "class": "consultantplus",
+      "image": "images/consultantplus.png",
+      "title": "Консультант+",
+      "type": "exec",
+      "exec": "D:\\Consultant plus\\cons.exe"
+    },
+    {
+      "name": "Консультация с бухгалтером",
+      "size": "small",
+      "position": "right",
+      "class": "consult_buhgalter",
+      "image": "images/consult_buhgalter.png",
+      "title": "Консультация с бухгалтером",
+      "type": "link",
+      "link": "http://localhost:3000?user=${USER_HASHED}"
+    },
+    {
+      "name": "Партнёрская программа",
+      "size": "small",
+      "position": "right",
+      "class": "partners",
+      "image": "images/partners.png",
+      "title": "Партнёрская программа",
+      "lastInRow": true,
+      "type": "link",
+      "link": "http://amokofg.ru/partnership.html"
     }
+  ],
+  "footerLinks": [
+    {
+      "type": "link",
+      "link": "http://www.amokofg.ru/",
+      "text": "www.AmokoFG.ru"
+    },
+    {
+      "type": "url",
+      "url": "mailto:business@amokofg.ru",
+      "text": "business@amokofg.ru"
+    },
+    {
+      "type": "url",
+      "url": "skype:dcerenkovs?chat",
+      "text": "Техническая поддержка"
+    }
+  ],
+  "news-rss": {
+    "url": "http://www.buhgalteria.ru/rss/news.xml",
+    "count": 7
+  },
+  "configuration": {
+    "logfolder": "c:\\Users\\Public\\logs",
+    "news-save-file": "C:\\launcher\\news.html",
+    "browser": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+  },
+  "encryption-config": {
+    "password": "zgt9HHHDXfRMC5goa4nI0w=="
+  }
 }
