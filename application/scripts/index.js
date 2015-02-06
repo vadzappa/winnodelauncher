@@ -96,7 +96,7 @@ var getCurrentWindow = function getCurrentWindow() {
 var TOKENS = {
     '${USER_HASHED}': function (config, button) {
         var password = process.env.NODE_PASSWORD || config.password,
-            encodedData = base64.encode(sjcl.encrypt(config.password, JSON.stringify(getUserName())));
+            encodedData = base64.encode(sjcl.encrypt(password, getUserName()));
         debug(encodedData.length);
         return encodedData;
     }

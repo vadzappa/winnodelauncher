@@ -49,7 +49,7 @@
       "image": "images/consult_buhgalter.png",
       "title": "Консультация с бухгалтером",
       "type": "link",
-      "link": "http://localhost:3000?user=${USER_HASHED}"
+      "link": "http://localhost?user=${USER_HASHED}"
     },
     {
       "name": "Партнёрская программа",
