@@ -1,6 +1,6 @@
 var MAXIMUM_NEWS_TITLE_LENGTH = 34;
 
-var IS_DEBUG = true,
+var IS_DEBUG = false,
     debug = function () {
         if (!IS_DEBUG) {
             return;
@@ -81,7 +81,7 @@ var getUserName = function getUserName() {
     try {
         return process.env['USERNAME'];
     } catch (e) {
-        return 'Zapolski';
+        return 'Unknown';
     }
 };
 
@@ -95,7 +95,8 @@ var getCurrentWindow = function getCurrentWindow() {
 
 var TOKENS = {
     '${USER_HASHED}': function (config, button) {
-        var encodedData = base64.encode(sjcl.encrypt(config.password, JSON.stringify(_.first(_.values(_.pick(process.env, 'USER', 'USERNAME'))))));
+        var password = process.env.NODE_PASSWORD || config.password,
+            encodedData = base64.encode(sjcl.encrypt(config.password, JSON.stringify(getUserName())));
         debug(encodedData.length);
         return encodedData;
     }
