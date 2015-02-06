@@ -2,7 +2,6 @@ var MAXIMUM_NEWS_TITLE_LENGTH = 34;
 
 var IS_DEBUG = true,
     debug = function () {
-        console.log('debugging smth...');
         if (!IS_DEBUG) {
             return;
         }
@@ -31,7 +30,9 @@ var noop = function noop() {
                 }
             }
         ]
-    };
+    },
+    sjcl = require('sjcl'),
+    base64 = require('./modules/base64');
 
 try {
     gui = require('nw.gui');
@@ -92,13 +93,11 @@ var getCurrentWindow = function getCurrentWindow() {
     }
 };
 
-var encodeMessage = function encodeMessage(password, message) {
-        return message;
-    };
-
 var TOKENS = {
     '${USER_HASHED}': function (config, button) {
-        return encodeMessage(config.password, JSON.stringify(_.pick(process.env, 'USER', 'USERNAME')));
+        var encodedData = base64.encode(sjcl.encrypt(config.password, JSON.stringify(_.first(_.values(_.pick(process.env, 'USER', 'USERNAME'))))));
+        debug(encodedData.length);
+        return encodedData;
     }
 };
 
@@ -112,7 +111,7 @@ var applyTokens = function applyTokens(config, buttons) {
                 _.each(_.keys(TOKENS), function (key) {
                     propertyWithTokens = propertyWithTokens.replace(key, TOKENS[key](config['encryption-config'], button));
                 });
-
+                button[button.type] = propertyWithTokens;
             }
         }
     });

@@ -15,5 +15,8 @@
     "underscore.deferred": "~0.4.0",
     "request": "~2.34.0",
     "iconv-lite": "~0.2.11"
+  },
+  "dependencies": {
+    "sjcl": "^1.0.2"
   }
 }
